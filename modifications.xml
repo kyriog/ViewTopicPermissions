@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
-	<id>hadesflames:ViewTopicPermissions</id>
+	<!-- This is an updated version of the plugin from hadesflames. All credits must go to him. -->
+	<id>kyriog:ViewTopicPermissions</id>
 	<version>1.0</version>
 	
 	<file name="$sourcedir/Display.php">
