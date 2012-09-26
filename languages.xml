@@ -91,4 +91,62 @@ $txt['recent_empty_error'] = "&#1048;&#1079;&#1074;&#1080;&#1085;&#1080;&#1090;&
 ]]></add>
 		</operation>
 	</file>
+	
+	<file name="$languagedir/ManagePermissions.french.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Classic View
+$txt['permissionname_view_topic'] = 'Sujets';
+$txt['permissionhelp_view_topic'] = 'Cette permission indique si un membre a le droit de lire tous les sujets, uniquement ses sujets ou aucun sujet.';
+$txt['permissionname_view_topic_own'] = 'Ses sujets';
+$txt['permissionname_view_topic_any'] = 'Tous les sujets';
+// View Topic Permissions Simple View
+$txt['permissiongroup_simple_view_topic'] = 'Lecture des sujets';
+$txt['permissionhelp_simple_view_topic'] = 'Cette permission indique si un membre a le droit de lire tous les sujets, uniquement ses sujets ou aucun sujet.';
+$txt['permissionname_simple_view_topic_own'] = 'Lire ses propres sujets';
+$txt['permissionname_simple_view_topic_any'] = 'Lire tous les sujets';]]></add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/Modifications.french.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Errors
+$txt['view_topic_any_error'] = "D&eacute;sol&eacute;, vous n'&ecirc;tes pas autoris&eacute; &agrave; lire les sujets sur ce forum.";
+$txt['view_topic_own_error'] = "D&eacute;sol&eacute;, vous ne pouvez lire que vos propre sujets sur ce forum.";
+$txt['recent_empty_error'] = "D&eacute;sol&eacute;, vous n'&ecirc;tes pas autoris&eacute; &agrave; lire les sujets r&eacute;cents pour le moment.";
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/ManagePermissions.french-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Classic View
+$txt['permissionname_view_topic'] = 'Sujets';
+$txt['permissionhelp_view_topic'] = 'Cette permission indique si un membre a le droit de lire tous les sujets, uniquement ses sujets ou aucun sujet.';
+$txt['permissionname_view_topic_own'] = 'Ses sujets';
+$txt['permissionname_view_topic_any'] = 'Tous les sujets';
+// View Topic Permissions Simple View
+$txt['permissiongroup_simple_view_topic'] = 'Lecture des sujets';
+$txt['permissionhelp_simple_view_topic'] = 'Cette permission indique si un membre a le droit de lire tous les sujets, uniquement ses sujets ou aucun sujet.';
+$txt['permissionname_simple_view_topic_own'] = 'Lire ses propres sujets';
+$txt['permissionname_simple_view_topic_any'] = 'Lire tous les sujets';]]></add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/Modifications.french-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Errors
+$txt['view_topic_any_error'] = "Désolé, vous n'êtes pas autorisé à lire les sujets sur ce forum.";
+$txt['view_topic_own_error'] = "Désolé, vous ne pouvez lire que vos propre sujets sur ce forum.";
+$txt['recent_empty_error'] = "Désolé, vous n'êtes pas autorisé à lire les sujets récents pour le moment.";
+]]></add>
+		</operation>
+	</file>
 </modification>
