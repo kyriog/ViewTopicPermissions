@@ -1,0 +1,93 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>hadesflames:ViewTopicPermissions</id>
+	<version>1.0</version>
+
+	<file name="$languagedir/ManagePermissions.english.php">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Classic View
+$txt['permissionname_view_topic'] = 'View topic permissions';
+$txt['permissionhelp_view_topic'] = 'This sets whether a member is allowed to view any topic, only his own topic, or no topic at all.';
+$txt['permissionname_view_topic_own'] = 'Own topic';
+$txt['permissionname_view_topic_any'] = 'Any topic';
+// View Topic Permissions Simple View
+$txt['permissiongroup_simple_view_topic'] = 'View topic permissions';
+$txt['permissionhelp_simple_view_topic'] = 'This sets whether a member is allowed to view any topic, only his own topic, or no topic at all.';
+$txt['permissionname_simple_view_topic_own'] = 'View Own topic';
+$txt['permissionname_simple_view_topic_any'] = 'View Any topic';]]></add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/Modifications.english.php">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Errors
+$txt['view_topic_any_error'] = "Sorry, but you are not allowed to view any topic in this board.";
+$txt['view_topic_own_error'] = "Sorry, but you are only allowed to view your own topics in this board.";
+$txt['recent_empty_error'] = "Sorry, but you are not allowed to view any of the recent topics at this time.";
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/ManagePermissions.russian.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Classic View
+$txt['permissionname_view_topic'] = 'Разрешения на просмотр тем';
+$txt['permissionhelp_view_topic'] = 'С помощью этих параметров можно ограничить просмотр тем пользователями данной группы.';
+$txt['permissionname_view_topic_own'] = 'Свои темы';
+$txt['permissionname_view_topic_any'] = 'Любые темы';
+// View Topic Permissions Simple View
+$txt['permissiongroup_simple_view_topic'] = 'Разрешения на просмотр тем';
+$txt['permissionhelp_simple_view_topic'] = 'С помощью этих параметров можно ограничить просмотр тем пользователями данной группы.';
+$txt['permissionname_simple_view_topic_own'] = 'Просмотр своих тем';
+$txt['permissionname_simple_view_topic_any'] = 'Просмотр любых тем';]]></add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/Modifications.russian.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Errors
+$txt['view_topic_any_error'] = "Извините, Вам не разрешено просматривать какие-либо темы на этом форуме.";
+$txt['view_topic_own_error'] = "Извините, но Вам разрешен просмотр только собственных тем.";
+$txt['recent_empty_error'] = "Извините, но Вам не разрешено просматривать последние темы.";
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/ManagePermissions.russian-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Classic View
+$txt['permissionname_view_topic'] = '&#1056;&#1072;&#1079;&#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1103; &#1085;&#1072; &#1087;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1090;&#1077;&#1084;';
+$txt['permissionhelp_view_topic'] = '&#1057; &#1087;&#1086;&#1084;&#1086;&#1097;&#1100;&#1102; &#1101;&#1090;&#1080;&#1093; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1086;&#1074; &#1084;&#1086;&#1078;&#1085;&#1086; &#1086;&#1075;&#1088;&#1072;&#1085;&#1080;&#1095;&#1080;&#1090;&#1100; &#1087;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1090;&#1077;&#1084; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1103;&#1084;&#1080; &#1076;&#1072;&#1085;&#1085;&#1086;&#1081; &#1075;&#1088;&#1091;&#1087;&#1087;&#1099;.';
+$txt['permissionname_view_topic_own'] = '&#1057;&#1074;&#1086;&#1080; &#1090;&#1077;&#1084;&#1099;';
+$txt['permissionname_view_topic_any'] = '&#1051;&#1102;&#1073;&#1099;&#1077; &#1090;&#1077;&#1084;&#1099;';
+// View Topic Permissions Simple View
+$txt['permissiongroup_simple_view_topic'] = '&#1056;&#1072;&#1079;&#1088;&#1077;&#1096;&#1077;&#1085;&#1080;&#1103; &#1085;&#1072; &#1087;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1090;&#1077;&#1084;';
+$txt['permissionhelp_simple_view_topic'] = '&#1057; &#1087;&#1086;&#1084;&#1086;&#1097;&#1100;&#1102; &#1101;&#1090;&#1080;&#1093; &#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1086;&#1074; &#1084;&#1086;&#1078;&#1085;&#1086; &#1086;&#1075;&#1088;&#1072;&#1085;&#1080;&#1095;&#1080;&#1090;&#1100; &#1087;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1090;&#1077;&#1084; &#1087;&#1086;&#1083;&#1100;&#1079;&#1086;&#1074;&#1072;&#1090;&#1077;&#1083;&#1103;&#1084;&#1080; &#1076;&#1072;&#1085;&#1085;&#1086;&#1081; &#1075;&#1088;&#1091;&#1087;&#1087;&#1099;.';
+$txt['permissionname_simple_view_topic_own'] = '&#1055;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1089;&#1074;&#1086;&#1080;&#1093; &#1090;&#1077;&#1084;';
+$txt['permissionname_simple_view_topic_any'] = '&#1055;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1083;&#1102;&#1073;&#1099;&#1093; &#1090;&#1077;&#1084;';]]></add>
+		</operation>
+	</file>
+
+	<file name="$languagedir/Modifications.russian-utf8.php" error="skip">
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+// View Topic Permissions Errors
+$txt['view_topic_any_error'] = "&#1048;&#1079;&#1074;&#1080;&#1085;&#1080;&#1090;&#1077;, &#1042;&#1072;&#1084; &#1085;&#1077; &#1088;&#1072;&#1079;&#1088;&#1077;&#1096;&#1077;&#1085;&#1086; &#1087;&#1088;&#1086;&#1089;&#1084;&#1072;&#1090;&#1088;&#1080;&#1074;&#1072;&#1090;&#1100; &#1082;&#1072;&#1082;&#1080;&#1077;-&#1083;&#1080;&#1073;&#1086; &#1090;&#1077;&#1084;&#1099; &#1085;&#1072; &#1101;&#1090;&#1086;&#1084; &#1092;&#1086;&#1088;&#1091;&#1084;&#1077;.";
+$txt['view_topic_own_error'] = "&#1048;&#1079;&#1074;&#1080;&#1085;&#1080;&#1090;&#1077;, &#1085;&#1086; &#1042;&#1072;&#1084; &#1088;&#1072;&#1079;&#1088;&#1077;&#1096;&#1077;&#1085; &#1087;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1090;&#1086;&#1083;&#1100;&#1082;&#1086; &#1089;&#1086;&#1073;&#1089;&#1090;&#1074;&#1077;&#1085;&#1085;&#1099;&#1093; &#1090;&#1077;&#1084;.";
+$txt['recent_empty_error'] = "&#1048;&#1079;&#1074;&#1080;&#1085;&#1080;&#1090;&#1077;, &#1085;&#1086; &#1042;&#1072;&#1084; &#1085;&#1077; &#1088;&#1072;&#1079;&#1088;&#1077;&#1096;&#1077;&#1085;&#1086; &#1087;&#1088;&#1086;&#1089;&#1084;&#1072;&#1090;&#1088;&#1080;&#1074;&#1072;&#1090;&#1100; &#1087;&#1086;&#1089;&#1083;&#1077;&#1076;&#1085;&#1080;&#1077; &#1090;&#1077;&#1084;&#1099;.";
+]]></add>
+		</operation>
+	</file>
+</modification>

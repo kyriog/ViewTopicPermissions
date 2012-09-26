@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>hadesflames:ViewTopicPermissions</id>
+	<version>1.0</version>
+	
+	<file name="$sourcedir/Display.php">
+		<operation>
+			<search position="before"><![CDATA[	$topicinfo = $smcFunc['db_fetch_assoc']($request);
+	$smcFunc['db_free_result']($request);]]></search>
+			<add><![CDATA[
+
+	// Are you allowed to view this topic?
+	if (!allowedTo('view_topic_any') && !allowedTo('view_topic_own'))
+		fatal_lang_error('view_topic_any_error', false);
+	elseif (!allowedTo('view_topic_any') && (allowedTo('view_topic_own') && $topicinfo['id_member_started'] != $context['user']['id']))
+		fatal_lang_error('view_topic_own_error', false);
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/ManagePermissions.php">
+		<operation>
+			<search position="after"><![CDATA[
+		'post_reply_own',
+		'post_reply_any',]]></search>
+			<add><![CDATA[
+		'view_topic_own',
+		'view_topic_any',]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[
+			'post_reply' => array(true, 'topic', 'make_posts', 'make_posts'),]]></search>
+			<add><![CDATA[
+			'view_topic' => array(true, 'topic', 'view_topic', 'view_topic'),]]></add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/MessageIndex.php">
+		<operation>
+			<search position="before"><![CDATA[WHERE t.id_board = {int:current_board}' . (!$modSettings['postmod_active'] || $context['can_approve_posts'] ? '' : '
+]]></search>
+			<add><![CDATA[				' . allowedTo('view_topic_any') ? '' : allowedTo('view_topic_own') ? 'AND t.id_member_started = {int:u_id}' : 'AND t.id_member_started = -1' . '
+]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[ORDER BY ' . (!empty($modSettings['enableStickyTopics']) ? 'is_sticky' . ($fake_ascending ? '' : ' DESC') . ', ' : '') . $_REQUEST['sort'] . ($ascending ? '' : ' DESC') . '
+			LIMIT {int:start}, {int:maxindex}',
+			array(
+				'current_board' => $board,
+				'current_member' => $user_info['id'],
+				'is_approved' => 1,
+				'id_member_guest' => 0,
+				'start' => $start,
+				'maxindex' => $maxindex,
+]]></search>
+			<add><![CDATA[				'u_id' => $context['user']['id'],
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/News.php">
+		<operation>
+			<search position="replace"><![CDATA[		// Limit the length of the message, if the option is set.
+		if (!empty($modSettings['xmlnews_maxlen']) && $smcFunc['strlen'](str_replace('<br />', "\n", $row['body'])) > $modSettings['xmlnews_maxlen'])
+			$row['body'] = strtr($smcFunc['substr'](str_replace('<br />', "\n", $row['body']), 0, $modSettings['xmlnews_maxlen'] - 3), array("\n" => '<br />')) . '...';
+
+		$row['body'] = parse_bbc($row['body'], $row['smileys_enabled'], $row['id_msg']);
+
+		censorText($row['body']);
+		censorText($row['subject']);
+
+		// Being news, this actually makes sense in rss format.
+]]></search>
+			<add><![CDATA[		if(!($context['user']['is_admin'] || in_array($row['id_board'], boardsAllowedTo('view_topic_any')) || (in_array($row['id_board'], boardsAllowedTo('view_topic_own')) && $row['id_first_member'] == $context['user']['id'])))
+			continue;
+		// Limit the length of the message, if the option is set.
+		if (!empty($modSettings['xmlnews_maxlen']) && $smcFunc['strlen'](str_replace('<br />', "\n", $row['body'])) > $modSettings['xmlnews_maxlen'])
+			$row['body'] = strtr($smcFunc['substr'](str_replace('<br />', "\n", $row['body']), 0, $modSettings['xmlnews_maxlen'] - 3), array("\n" => '<br />')) . '...';
+
+		$row['body'] = parse_bbc($row['body'], $row['smileys_enabled'], $row['id_msg']);
+
+		censorText($row['body']);
+		censorText($row['subject']);
+
+		// Being news, this actually makes sense in rss format.
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[		// Limit the length of the message, if the option is set.
+		if (!empty($modSettings['xmlnews_maxlen']) && $smcFunc['strlen'](str_replace('<br />', "\n", $row['body'])) > $modSettings['xmlnews_maxlen'])
+			$row['body'] = strtr($smcFunc['substr'](str_replace('<br />', "\n", $row['body']), 0, $modSettings['xmlnews_maxlen'] - 3), array("\n" => '<br />')) . '...';
+
+		$row['body'] = parse_bbc($row['body'], $row['smileys_enabled'], $row['id_msg']);
+
+		censorText($row['body']);
+		censorText($row['subject']);
+
+		// Doesn't work as well as news, but it kinda does..
+]]></search>
+			<add><![CDATA[		if(!($context['user']['is_admin'] || in_array($row['id_board'], boardsAllowedTo('view_topic_any')) || (in_array($row['id_board'], boardsAllowedTo('view_topic_own')) && $row['id_first_member'] == $context['user']['id'])))
+			continue;
+		// Limit the length of the message, if the option is set.
+		if (!empty($modSettings['xmlnews_maxlen']) && $smcFunc['strlen'](str_replace('<br />', "\n", $row['body'])) > $modSettings['xmlnews_maxlen'])
+			$row['body'] = strtr($smcFunc['substr'](str_replace('<br />', "\n", $row['body']), 0, $modSettings['xmlnews_maxlen'] - 3), array("\n" => '<br />')) . '...';
+
+		$row['body'] = parse_bbc($row['body'], $row['smileys_enabled'], $row['id_msg']);
+
+		censorText($row['body']);
+		censorText($row['subject']);
+
+		// Doesn't work as well as news, but it kinda does..
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/Printpage.php">
+		<operation>
+			<search position="replace"><![CDATA[	// Split the topics up so we can print them.
+	$request = $smcFunc['db_query']('', '
+		SELECT subject, poster_time, body, IFNULL(mem.real_name, poster_name) AS poster_name
+		FROM {db_prefix}messages AS m
+			LEFT JOIN {db_prefix}members AS mem ON (mem.id_member = m.id_member)
+		WHERE m.id_topic = {int:current_topic}
+		ORDER BY m.id_msg',
+		array(
+			'current_topic' => $topic,
+		)
+	);
+]]></search>
+			<add><![CDATA[	// Split the topics up so we can print them.
+	$request = $smcFunc['db_query']('', '
+		SELECT b.id_board, m2.id_member AS id_first_member, m.subject, m.poster_time, m.body, IFNULL(mem.real_name, m.poster_name) AS poster_name
+		FROM {db_prefix}messages AS m
+			INNER JOIN {db_prefix}topics AS t ON (t.id_topic = m.id_topic)
+			INNER JOIN {db_prefix}messages AS m2 ON (m2.id_msg = t.id_first_msg)
+			INNER JOIN {db_prefix}boards AS b ON (b.id_board = t.id_board)
+			LEFT JOIN {db_prefix}members AS mem ON (mem.id_member = m.id_member)
+		WHERE m.id_topic = {int:current_topic}
+		ORDER BY m.id_msg',
+		array(
+			'current_topic' => $topic,
+		)
+	);
+]]></add>
+		</operation>
+		<operation>
+			<search position="after"><![CDATA[		// Censor the subject and message.
+		censorText($row['subject']);
+		censorText($row['body']);
+]]></search>
+			<add><![CDATA[		if(!($context['user']['is_admin'] || in_array($row['id_board'], boardsAllowedTo('view_topic_any')) || (in_array($row['id_board'], boardsAllowedTo('view_topic_own')) && $row['id_first_member'] == $context['user']['id'])))
+			continue;
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/Recent.php">
+		<operation>
+			<search position="after"><![CDATA[		// Censor everything.
+		censorText($row['body']);
+		censorText($row['subject']);
+]]></search>
+			<add><![CDATA[		if(!($context['user']['is_admin'] || in_array($row['id_board'], boardsAllowedTo('view_topic_any')) || (in_array($row['id_board'], boardsAllowedTo('view_topic_own')) && $row['id_first_member'] == $context['user']['id'])))
+			continue;
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[	$smcFunc['db_free_result']($request);
+
+	// There might be - and are - different permissions between any and own.
+	$permissions = array(
+]]></search>
+			<add><![CDATA[	if(empty($context['posts']))
+		fatal_lang_error('recent_empty_error', false);
+	$smcFunc['db_free_result']($request);
+
+	// There might be - and are - different permissions between any and own.
+	$permissions = array(
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$sourcedir/Search.php">
+		<operation>
+			<search position="replace"><![CDATA[			'mark_any_notify' => boardsAllowedTo('mark_any_notify')
+]]></search>
+			<add><![CDATA[			'mark_any_notify' => boardsAllowedTo('mark_any_notify'),
+			'view_topic_own' => boardsAllowedTo('view_topic_own'),
+			'view_topic_any' => boardsAllowedTo('view_topic_any'),
+]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[		'replies' => $message['num_replies'],
+]]></search>
+			<add><![CDATA[		'can_view' => in_array($message['id_board'], $boards_can['view_topic_any']) || (in_array($message['id_board'], $boards_can['view_topic_own']) && $message['first_member_id'] == $context['user']['id']) || $context['user']['is_admin'],
+]]></add>
+		</operation>
+	</file>	
+	
+	<file name="$themedir/Search.template.php">
+		<operation>
+			<search position="before"><![CDATA[		while ($topic = $context['get_topics']())
+		{
+]]></search>
+			<add><![CDATA[			if(!$topic['can_view'])
+				continue;
+]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[			foreach ($topic['matches'] as $message)
+			{
+]]></search>
+			<add><![CDATA[				if(!$topic['can_view'])
+					continue;
+				
+]]></add>
+		</operation>
+	</file>
+</modification>
