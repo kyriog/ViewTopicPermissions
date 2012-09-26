@@ -4,15 +4,15 @@
 	<!-- This is an updated version of the plugin from hadesflames. All credits must go to him. -->
 	<id>kyriog:ViewTopicPermissions</id>
 	<name>View Topic Permissions</name>
-	<version>1.0</version>
+	<version>1.01</version>
 	<type>modification</type>
 	
-	<install for="2.0 RC2 - 2.0 RC3">
+	<install for="2.0.2">
 		<modification format="xml" type="file">modifications.xml</modification>
 		<modification format="xml" type="file">languages.xml</modification>
 	</install>
 	
-	<uninstall for="2.0 RC2 - 2.0 RC3">
+	<uninstall for="2.0.2">
 		<modification format="xml" type="file" reverse="true">modifications.xml</modification>
 		<modification format="xml" type="file" reverse="true">languages.xml</modification>
 	</uninstall>
